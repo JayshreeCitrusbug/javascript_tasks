@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script> -->
-    <script defer src="./script.js"></script>
+    
     <link rel="stylesheet" href="/style.css" />
     <title>Form</title>
     <style>
@@ -28,16 +28,16 @@
 
 <body>
     <h1 id="heading">Registration Form</h1>
-    <form name="registerForm" onsubmit="validateForm()">
+    <form name="registerForm" onsubmit="return validateForm()">
         <div class="mb-3">
             <label for="fname" class="form-label">First Name</label>
             <input type="text" class="form-control" id="fname" placeholder="First Name" />
-            <div class="error"></div>
+            <div class="error" id="error"></div>
         </div>
         <div class="mb-3">
             <label for="lname" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="lname" placeholder="Last Name" />
-            <div class="error"></div>
+            <div class="error" id="error"></div>
         </div>
         <!-- <div class="mb-3">
             <label for="email" class="form-label">Email Address</label>
@@ -87,9 +87,12 @@
             <div class="error"></div>
         </div>-->
         <div class="mb-3"> 
-            <button type="submit">Submit</button>
+            <input type="submit" value="Submit">
         </div>
     </form>
-</body>
 
+   
+</body>
+<script src="./script.js"></script>
 </html>
+

@@ -1,7 +1,13 @@
+:root{
+  --success-color: #23cc71;
+  --error-color: #e74c3c;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
   }
   * {box-sizing: border-box;}
+
   #heading{
     color: black;
     padding-left: 70px;
@@ -10,8 +16,37 @@ body {
     margin-bottom: 30px;
   }
   
-  
-  input[type=text] {
+  .mb-3{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+  }
+
+  .mb-3 label{
+    display: block;
+    margin: 5px;
+  }
+
+
+  /* input[type=text] [type=email]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    margin-bottom: 16px;
+    resize: vertical;
+  } */
+
+
+  .mb-3 input{
+    /* border: 2px solid #f0f0f0;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%; */
+
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -21,8 +56,35 @@ body {
     margin-bottom: 16px;
     resize: vertical;
   }
-  
-  
+
+  .mb-3 input:focus{
+    outline: 0px;
+    border-color: #777;
+  }
+
+  .mb-3.success input{
+    border-color: var(--success-color);
+  }
+
+  .mb-3.error input{
+    border-color: var(--error-color);
+  }
+
+  .mb-3 small{
+    color: var(--error-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+  }
+
+  .mb-3.mb-3.error small{
+    visibility: visible;
+  }
+
+
+
+
   /* input[type=reset]{
     width: 20%;
     font-size: 18px;
