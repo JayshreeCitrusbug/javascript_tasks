@@ -5,6 +5,9 @@ const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 const zipcode = document.getElementById('zipcode');
 const gender = document.getElementById('gender');
+const dob = document.getElementById("dob");
+const hobby = document.getElementById("hobby");
+const technology = document.getElementById("form-multi-select");
 
 
 form.addEventListener('submit', function(e){
@@ -12,6 +15,8 @@ form.addEventListener('submit', function(e){
     console.log('clicked');
     validateForm()
 });
+
+form.addEventListener('onkeyup', validateForm);
 
 //set error function 
 function setError(id, errorMessage){
@@ -40,19 +45,56 @@ function isPhoneNumberValid(number) {
     return re.test(number)
 }
 
-function checkRadioButton() {
+function checkGender() {
     var getSelectedValue = document.querySelector(   
         'input[name="gender"]:checked');   
     return getSelectedValue
 }    
 
-function validateForm(){
+// function checkHobbies(){
+//     var checkBoxData = []
+//     var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
+//     console.log("!!!!!!!!!!!!!!!!!")
+//     console.log(markedCheckbox)
+//     for (var cbox of markedCheckbox) {  
+//         console.log(cbox)
+//         checkBoxData.push(cbox);
+//       }
+//     console.log(checkBoxData)
+//     return checkBoxData
+// }
 
+function checkHobbies(){
+    var checkBoxData = [];
+    var inputElements = document.getElementsByClassName('form-check-input');
+    for(var i=0; inputElements[i]; ++i){
+        if(inputElements[i].checked){
+            checkBoxData.push(inputElements[i].name);
+        }
+    }
+    return checkBoxData
+}
+
+function checkTechnology(){
+    var selected = document.getElementById('form-multi-select');
+    const selectedTech = [...selected.options].filter(option => option.selected).map(option => option.value);
+    console.log("data", selectedTech)
+    return selectedTech
+}
+
+
+
+// Form validation
+function validateForm(){
     const fnameData = fname.value.trim();
     const lnameData = lname.value.trim();
     const emailData = email.value.trim();
     const phoneData = phone.value.trim();
     const zipcodeData = zipcode.value.trim();
+    const dobData = dob.value.trim();
+    var genderData = checkGender();
+    var hobbyData = checkHobbies();
+    var technologyData = checkTechnology();
 
     //fname
     if (fnameData === '') {
@@ -61,6 +103,8 @@ function validateForm(){
     }
     else{
         validData(fname);
+        // localStorage.setItem("fname", fnameData);
+        val = true;
     }
    //lname
     if (lnameData === '') {
@@ -69,6 +113,8 @@ function validateForm(){
     }
     else{
         validData(lname);
+        // localStorage.setItem("lname", lnameData);
+        val = true;
     }
 
     //email
@@ -83,6 +129,8 @@ function validateForm(){
         }
         else{
             validData(email);
+            // localStorage.setItem("email", emailData);
+            val = true;
         }
     }
     //phone
@@ -97,6 +145,8 @@ function validateForm(){
         }
         else{
             validData(phone);
+            // localStorage.setItem("phone", phoneData);
+            val = true;
         }
     }
     //zip-code
@@ -105,22 +155,93 @@ function validateForm(){
         val = false;
     }
     else{
-        if(!(/^\d{5}(-\d{4})?$/.test(zipcodeData))){
+        const zipRegex = /^\d{5}(-\d{4})?$/;
+        if(!(zipRegex.test(zipcodeData))){
             setError(zipcode, "Please enter a valid zip code");
             val = false;
         }
         else{
             validData(zipcode);
+            // localStorage.setItem("zipcode", zipcodeData);
+            val = true;
         }
     }
     //gender
-    if(checkRadioButton() == null) {   
+    if((genderData) == null) {   
         setError(gender, "Please choose Gender");
         val = false;
     }   
     else {  
-        const genderData = checkRadioButton().value
-        console.log(genderData)
+        var genderData = genderData.value
+        console.log("genderData", genderData)
         validData(gender);
+        // localStorage.setItem("gender", genderData);
+        val = true;
     } 
+    // DOB
+    if (dobData === '') {
+        setError(dob, "Please Enter Date of Birth");
+        val = false;
+    }
+    else{
+        const dateRegex = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+        if (!dateRegex.test(dobData)) {
+            setError(dob, "Please enter a valid Date of Birth in MM/DD/YYYY format.");
+        }
+        else{
+            validData(dob);
+            // localStorage.setItem("dob", dobData);
+            val = true;
+        }
+    }
+    //hobby
+    if((checkHobbies()).length==0){
+        setError(hobby, "Please choose your hobbies");
+        val = false;
+    }
+    else{
+        // console.log("before hobbyData",  hobbyData)
+        // var hobbyData = hobbyData.value;
+        console.log("hobbyData", hobbyData)
+        validData(hobby);
+        // localStorage.setItem("hobby", hobbyData);
+        val = true;
+    }
+
+    //technology
+    if((checkTechnology()).length==0){
+        setError(technology, "Please choose Technology");
+        val = false;
+    }
+    else{
+        // console.log("before technology",  technologyData)
+        // var technologyData = technologyData.value
+        console.log("technologyData", technologyData)
+        validData(technology);
+        // localStorage.setItem("technology", technologyData);
+        val = true;
+    }
+
+
+    if (val){
+        var count = localStorage.length;
+        var obj = {
+            "fname": fnameData,
+            "lname": lnameData,
+            "email": emailData,
+            "phone": phoneData,
+            "zipcode": zipcodeData,
+            "gender": genderData,
+            "dob": dobData,
+            "hobby": hobbyData,
+            "technology": technologyData,
+        }
+        // data.push(count);
+        // console.log(data)
+        console.log("obj", obj)
+        console.log("count", count)
+        localStorage.setItem(count+1, JSON.stringify(obj));
+        console.log("after count", count)
+        }
+
 }

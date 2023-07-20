@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -39,33 +40,51 @@
             <div class="mb-3">
                 <label for="gender" class="form-label" id="gender">Gender</label>
                 <label class="radio-inline">
-                    <input style="width: 5%; margin-right: -30px;" type="radio" name="gender" id="male" value="male">Male
+                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="male" value="male">Male
                 </label>
                 <label class="radio-inline">
-                    <input style="width: 5%; margin-right: -30px;" type="radio" name="gender" id="female" value="female">Female
+                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="female" value="female">Female
                 </label>
                 <label class="radio-inline">
-                    <input style="width: 5%; margin-right: -30px;" type="radio" name="gender" id="other" value="other">Other
+                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="other" value="other">Other
                 </label>
                 <br>
                 <small>Error Message</small>
             </div>
-
-            <!-- <div class="mb-3">
-                <label for="gender" class="form-label">Gender</label>
-                <br />
-                <label class="radio-inline">
-                    <input type="radio" name="male" /> Male
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="female" /> Female
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="other" /> Other
-                </label>
+            <div class="mb-3">
+                <label for="dob">Date of Birth:</label>
+                <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY">
                 <small>Error Message</small>
-            </div> -->
+            </div>
+            <div class="mb-3">
+                <label for="hobby" class="checkbox" id="hobby">Hobby</label>
+                <br />
+                <input  class="form-check-input" type="checkbox" id="hobby1" name="cricket" />
+                <label  class="form-check-label" for="hobby1"> Cricket </label>
     
+                <input  class="form-check-input" type="checkbox" id="hobby2" name="reading" />
+                <label  class="form-check-label" for="hobby2"> Reading </label>
+    
+                <input  class="form-check-input" type="checkbox" id="hobby3" name="traveling"/>
+                <label  class="form-check-label" for="hobby3"> Traveling </label>
+    
+                <input  class="form-check-input" type="checkbox" id="hobby4" name="movies" />
+                <label  class="form-check-label" for="hobby4"> Movies </label>
+                <small>Error Message</small>
+            </div>
+            <div class="mb-3">
+                <label for="technology" id="technology">Technology:</label>
+                <select class="form-select" multiple aria-label="multiple select example" id="form-multi-select">
+                    <option value="Python">Python</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="React">React</option>
+                </select>
+                <p style="padding:50px">
+                <small>Error Message</small>
+            </div>
+
 
             <button type="submit">Submit</button>
         </form>
