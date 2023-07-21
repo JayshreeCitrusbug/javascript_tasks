@@ -112,6 +112,23 @@ button{
   margin-top: 80px;
   position: absolute;
 }
+
+input[type=submit]{
+  margin-top: 80px;
+  position: absolute;
+}
+
+.table{
+  font-size: 23px;
+  margin-left: 5%;
+  width: 90%;
+}
+
+.table td button{
+  margin-top: -2px;
+  width: 70px;
+  height: 38px;
+}
   /* input[type=reset]{
     width: 20%;
     font-size: 18px;

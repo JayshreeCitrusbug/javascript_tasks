@@ -10,13 +10,14 @@ const hobby = document.getElementById("hobby");
 const technology = document.getElementById("form-multi-select");
 
 
-form.addEventListener('submit', function(e){
+form?.addEventListener('submit', function(e){
     e.preventDefault();
     console.log('clicked');
-    validateForm()
+    validateForm();
+    window.location.assign("http://127.0.0.1:5500/list.html");
 });
 
-form.addEventListener('onkeyup', validateForm);
+// form.addEventListener('onblur', validateForm());
 
 //set error function 
 function setError(id, errorMessage){
@@ -36,7 +37,7 @@ function validData(id){
 }
 
 function isEmailValid(email){
-    const emailRegex = /^([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|"([]!#-[^-~ \t]|(\\[\t -~]))+")@([0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)*|\[((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|IPv6:((((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){6}|::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){5}|[0-9A-Fa-f]{0,4}::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){4}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):)?(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){3}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,2}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){2}|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,3}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,4}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::)((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3})|(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3})|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,5}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3})|(((0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}):){0,6}(0|[1-9A-Fa-f][0-9A-Fa-f]{0,3}))?::)|(?!IPv6:)[0-9A-Za-z-]*[0-9A-Za-z]:[!-Z^-~]+)])$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email)
 }
 
@@ -95,6 +96,7 @@ function validateForm(){
     var genderData = checkGender();
     var hobbyData = checkHobbies();
     var technologyData = checkTechnology();
+    var val = true;
 
     //fname
     if (fnameData === '') {
@@ -155,7 +157,7 @@ function validateForm(){
         val = false;
     }
     else{
-        const zipRegex = /^\d{5}(-\d{4})?$/;
+        const zipRegex =/(^\d{5,6}$)|(^\d{5}-\d{4}$)/;
         if(!(zipRegex.test(zipcodeData))){
             setError(zipcode, "Please enter a valid zip code");
             val = false;
@@ -200,7 +202,6 @@ function validateForm(){
         val = false;
     }
     else{
-        // console.log("before hobbyData",  hobbyData)
         // var hobbyData = hobbyData.value;
         console.log("hobbyData", hobbyData)
         validData(hobby);
@@ -214,7 +215,6 @@ function validateForm(){
         val = false;
     }
     else{
-        // console.log("before technology",  technologyData)
         // var technologyData = technologyData.value
         console.log("technologyData", technologyData)
         validData(technology);
@@ -245,3 +245,17 @@ function validateForm(){
         }
 
 }
+
+// function replaceFunction(){
+//     windows.location.href = "http://127.0.0.1:5500/list-page.html";
+// }
+
+
+
+
+// function replaceFunction(){
+//     if (localStorage.length==0){
+
+
+//     }
+// }
