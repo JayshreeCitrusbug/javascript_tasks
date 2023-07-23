@@ -48,16 +48,22 @@
                         <td> ${JSON.parse(localStorage[i]).gender}</td>
                         <td> ${JSON.parse(localStorage[i]).hobby}</td>
                         <td> ${JSON.parse(localStorage[i]).technology}</td>
-                        <td> <button type="button" class="btn btn-primary" onclick="editRow(${i})">View</button> </td>
+                        <td> <button type="button" class="btn btn-primary" onclick="viewRow(${i})">View</button> </td>
             </tr>`;
                 
                 tbody.innerHTML += tr;
             }
         }
 
-        function editRow(rowId) {
+        function viewRow(rowId) {
             // Perform any action when the button is clicked, e.g., open a modal to edit the row data.
             console.log("Editing row with ID:", rowId);
+            url = `http://127.0.0.1:5500/view.html?data=${(rowId)}`;
+    
+            document.location.href = url;
+            // window.location.assign(`http://127.0.0.1:5500/view.html?data=${localStorage[rowId]}`);
+            // console.log("local storage.",localStorage[rowId])
+            return true
         }
 
         replaceFunction()
