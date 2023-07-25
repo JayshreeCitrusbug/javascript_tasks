@@ -129,6 +129,47 @@ input[type=submit]{
   width: 70px;
   height: 38px;
 }
+
+.btn.btn-warning{
+    margin-left: 7%;
+    margin-top: initial;
+    height:50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 18px;
+}
+
+.btn.btn-danger{
+    margin-left: 14%;
+    margin-top: initial;
+    height:50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+}
+
+.w3-modal-content{
+  width: 90%;
+  text-align:center;
+  height: 50%;
+}
+
+.w3-container button#noBtn{
+    margin-top: 60px;
+    margin-left: -235px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 25%;
+}
+
+.w3-container button#yesBtn{
+  margin-top: 60px;
+  margin-left: -125px;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 25%;
+}
+
   /* input[type=reset]{
     width: 20%;
     font-size: 18px;

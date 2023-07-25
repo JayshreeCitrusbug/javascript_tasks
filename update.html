@@ -10,51 +10,51 @@
 </head>
 <body>
     <div class="container">
-        <form id="form" class="form"  method="POST">
+        <form id="display-form" class="form">
             <h2>Registration Form</h2>
             <div class="mb-3">
                 <label for="fname" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="First Name" />
-                <small>Error Message</small>
+                <input type="text" class="form-control" id="fname" />
+
             </div>
             <div class="mb-3">
                 <label for="lname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lname" placeholder="Last Name" />
-                <small>Error Message</small>
+                <input type="text" class="form-control" id="lname" />
+
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label" onblur="validateForm()">Email Address</label>
-                <input type="text" class="form-control" id="email" placeholder="Email Address" />
-                <small>Error Message</small>
+                <label for="email" class="form-label">Email Address</label>
+                <input type="text" class="form-control" id="email" />
+
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label" onblur="validateForm()">Phone No.</label>
-                <input type="phone" class="form-control" id="phone" placeholder="Phone Number" />
-                <small>Error Message</small>
+                <label for="phone" class="form-label">Phone No.</label>
+                <input type="phone" class="form-control" id="phone" />
+
             </div>
             <div class="mb-3">
                 <label for="zipcode" class="form-label">Zip Code</label>
-                <input type="zipcode" class="form-control" id="zipcode" placeholder="Zip code" />
-                <small>Error Message</small>
+                <input type="zipcode" class="form-control" id="zipcode" />
+
             </div>
             <div class="mb-3">
-                <label for="gender" class="form-label" id="gender" on="validateForm()">Gender</label>
+                <label for="gender" class="form-label" id="gender" >Gender</label>
                 <label class="radio-inline">
-                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="male" value="male">Male
+                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="male" value="male"  >Male
                 </label>
                 <label class="radio-inline">
-                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="female" value="female">Female
+                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="female" value="female"  >Female
                 </label>
                 <label class="radio-inline">
-                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="other" value="other">Other
+                    <input style="width: 9%; margin-right: -35px;" type="radio" name="gender" id="other" value="other"  >Other
                 </label>
                 <br>
-                <small>Error Message</small>
+
             </div>
             <div class="mb-3">
                 <label for="dob">Date of Birth:</label>
-                <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY">
-                <small>Error Message</small>
+                <input type="text" id="dob" name="dob" >
+
             </div>
             <div class="mb-3">
                 <label for="hobby" class="checkbox" id="hobby">Hobby</label>
@@ -65,16 +65,16 @@
                 <input  class="form-check-input" type="checkbox" id="hobby2" name="reading" />
                 <label  class="form-check-label" for="hobby2"> Reading </label>
     
-                <input  class="form-check-input" type="checkbox" id="hobby3" name="traveling"/>
+                <input  class="form-check-input" type="checkbox" id="hobby3" name="traveling" />
                 <label  class="form-check-label" for="hobby3"> Traveling </label>
     
                 <input  class="form-check-input" type="checkbox" id="hobby4" name="movies" />
                 <label  class="form-check-label" for="hobby4"> Movies </label>
-                <small>Error Message</small>
+ 
             </div>
             <div class="mb-3">
                 <label for="technology" id="technology">Technology:</label>
-                <select class="form-select" multiple aria-label="multiple select example" id="form-multi-select">
+                <select class="form-select" multiple aria-label="multiple select example" id="form-multi-select" >
                     <option value="Python">Python</option>
                     <option value="HTML">HTML</option>
                     <option value="CSS">CSS</option>
@@ -82,14 +82,43 @@
                     <option value="React">React</option>
                 </select>
                 <p style="padding:50px">
-                <small>Error Message</small>
+
             </div>
 
-            <!-- <input type="submit"/>   -->
-            <button type="submit">Submit</button>
         </form>
     </div>
+
+    <script>
+        // var fname = document.getElementById("fname");
+        window.onload = function () {
+        var url = document.location.href;
+            params = url.split('?')[1].split('=')[1];
+            let text = localStorage.getItem(params);
+            let obj = JSON.parse(text);
     
-    <script src="./script.js"></script>
+            document.getElementById('fname').value = obj.fname;
+            document.getElementById('lname').value = obj.lname;
+            document.getElementById('email').value = obj.email;
+            document.getElementById('phone').value = obj.phone;
+            document.getElementById('zipcode').value = obj.zipcode;
+            document.getElementById('dob').value = obj.dob;
+
+
+            gender = document.querySelectorAll('input[name="gender"]');
+            gender.forEach(element=>{
+                element.checked = element.id===obj.gender;
+            });
+
+            hobby = document.querySelectorAll('input[class="form-check-input"]');
+            hobby.forEach(element=>{
+                element.checked = obj.hobby.includes(element.name);
+            });
+
+            technology = document.getElementById('form-multi-select');
+            [...technology.options].forEach(ops => {
+                ops.selected = obj.technology.includes(ops.value);
+              });  
+    }
+    </script>   
 </body>
 </html>

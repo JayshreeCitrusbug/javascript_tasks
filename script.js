@@ -13,8 +13,10 @@ const technology = document.getElementById("form-multi-select");
 form?.addEventListener('submit', function(e){
     e.preventDefault();
     console.log('clicked');
-    validateForm();
-    window.location.assign("http://127.0.0.1:5500/list.html");
+    if(validateForm()){
+        console.log("@@@@@@@@@@@@@@@@")
+        window.location.assign("http://127.0.0.1:5500/list.html");
+    };
 });
 
 // form.addEventListener('onblur', validateForm());
